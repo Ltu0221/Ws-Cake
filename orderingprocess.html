@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WISHFUL SWEETS心願甜點｜訂購流程</title>
+    <style>
+        * {
+            /* 取消預設邊界 */
+            margin: 0;
+            /* 取消預設縮排 */
+            padding: 0;
+            /* 字型設定 */
+            font-family: 微軟正黑體;
+
+        }
+
+
+        .wrap {
+            /* 固定寬度 */
+            width: 1200px;
+
+            /* 段隨著網頁移動: div 的網頁(頁邊)置中對齊 */
+            margin: auto;
+            /* 文字及物件的置中對齊 */
+            /* text-align: center; */
+
+        }
+
+        .header {
+
+            /* 寬度 */
+            width: 1200px;
+            /* 高度 */
+            height: 110px;
+            /* 定位基準點 */
+            position: relative;
+            display: flex;
+            justify-content: space-between
+        }
+
+        img {
+            height: 90px;
+            width: 110px;
+        }
+
+
+        .header .logo {
+            height: 90px;
+            width: 110px;
+
+            /* position: absolute; */
+            /* left: 10px; */
+            /* top: 5px; */
+            /* 設定元素與元素之間的右邊界間距 */
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+
+        .header h1 {
+            /* 首頁區-左側超連結清單水平排列 */
+            position: absolute;
+            left: 120px;
+            top: 30px;
+        }
+
+
+
+        .header ul li {
+            /* 首頁區-右側選單區超連結清單水平排列 */
+            /* 浮動屬性(貼齊父容器的左內緣) */
+            float: left;
+            /* 設定元素與元素之間的右邊界間距 */
+            margin-right: 20px;
+
+        }
+
+        .icon {
+            width: 100px;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 35px;
+            margin-right: 10px;
+            background-color: none;
+
+        }
+
+        .icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+
+        .nav {
+            /* 首頁區-左側超連結清單水平排列 */
+            position: absolute;
+            right: 120px;
+            top: 30px;
+        }
+
+        body {
+            width: auto;
+            background-color: #f6f3ee;
+        }
+
+
+        ul {
+            margin: 0;
+            padding: 0;
+            /* 補充說明：設定absolute後，position: relative會尋找position: absolute 作為絕對定位 */
+            /* position: absolute; */
+            /* right: 20px; */
+            /* top: 50px; */
+
+        }
+
+        li {
+            list-style: none;
+            float: left;
+        }
+
+        /* 第一層li被碰到時，顯示第二層選單 */
+        li:hover ul {
+            display: block;
+        }
+
+        .nav a {
+            display: block;
+            width: 120px;
+            height: 27px;
+            line-height: 27px;
+            /*行高值=高度值 =>垂直置中*/
+            background-color: rgb(228, 196, 169);
+            color: dimgrey;
+            text-decoration: none;
+            text-align: center;
+            transition: all .3s;
+            /*點選到有下拉選單時要有點漸變效果，需先打完下面nav a:hover{才能做此指令*/
+        }
+
+        /* 原本的樣式被碰到時的色彩變化 */
+        .nav a:hover {
+            background-color: #fffbe7;
+            color: #333;
+        }
+
+        /* 第二層 */
+        ul ul {
+            /* 處理定位推擠問題 */
+            position: absolute;
+            display: none;
+        }
+
+        li li {
+            /* 取消浮動，改為垂直排列 */
+            clear: left;
+        }
+
+         /* 覆蓋層樣式 */
+         .search-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 搜尋容器樣式 */
+        .search-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .search-container input {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .content {
+            /* 內容置中 */
+            text-align: center;
+            /* 放大字體 */
+            font-size: 20px;
+            /* 行距 */
+            line-height: 2;
+            color: rgb(250, 141, 40);
+            padding-bottom: 10px;
+        }
+
+        .content1 {
+            /* 內容置中 */
+            text-align: left;
+            /* 放大字體 */
+            font-size: 20px;
+            /* 行距 */
+            line-height: 2.5;
+            color: rgb(54, 54, 54);
+            padding: 30px 140px;
+
+        }
+
+        .content2 {
+            /* 內容置中 */
+            text-align: center;
+            /* 放大字體 */
+            font-size: 20px;
+            /* 行距 */
+            line-height: 3;
+            color: rgb(243, 73, 73);
+            padding-bottom: 30px;
+
+        }
+
+
+        /* 頁尾區 */
+        .footer {
+            background-color: rgb(216, 196, 172);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            line-height: 2;
+        }
+
+         .footer img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .footer1 {
+
+            color: #666666;
+            text-align: center;
+            padding: 20px 0;
+            line-height: 1.5;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 最外層外框 -->
+    <div class="wrap">
+        <!-- 頁首區 -->
+        <div class="header">
+            <!-- 左側logo -->
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="./images/20241007 LOGO-1-04.png" alt="">
+                </a>
+
+            </div>
+
+
+            <!-- logo旁選單超連結 -->
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="./brand.html">品牌理念</a>
+                    </li>
+                    <li>
+                        <a href="./cakes.html">精選蛋糕款式</a>
+                        <ul>
+                            <li>
+                                <a href="./customizedcake.html">客製化蛋糕</a>
+                            </li>
+                            <li>
+                                <a href="./bigcake.html">大型/婚禮蛋糕</a>
+                            </li>
+                        </ul>
+                        <li>
+                            <a href="./teaparty.html">茶會/派對</a>
+                            <ul>
+                                <li>
+                                    <a href="./catering.html">外燴方案</a>
+                                </li>
+                                <li>
+                                    <a href="./desserts.html">甜點品項</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="./orderingguidelines.html">訂購守則</a>
+                            <ul>
+                                <li>
+                                    <a href="./orderingprocess.html">訂購流程</a>
+                                </li>
+                                <li>
+                                    <a href="./fee.html">宅配方式及費用</a>
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+
+
+            </div>
+
+            <div class="icon">
+                <a href="#" onclick="showSearchOverlay()">
+                    <img src="./icon/search_icon.png" alt="searchicon">
+                </a>
+                <a href="./member.html">
+                    <img src="./icon/member_icon.png" alt="">
+                </a>
+                <a href="./shoppingcart.html">
+                    <img src="./icon/shoppingcart_icon.png" alt="">
+                    <span id="cart-count"></span> <!-- 新增數量顯示 -->
+                </a>
+            </div>
+
+            <div id="search-bar" style="display: none; margin-top: 20px;">
+                <input type="text" id="search-input" placeholder="輸入您想搜尋的商品關鍵字" style="width: 80%; padding: 8px;">
+                <button onclick="searchProduct()" style="padding: 8px;">搜尋</button>
+            </div>
+
+            <!-- 搜尋覆蓋層 -->
+            <div id="search-overlay" class="search-overlay">
+                <div class="search-container">
+                    <input type="text" id="overlay-search-input" placeholder="輸入您想搜尋的商品關鍵字">
+                    <button onclick="overlaySearchProduct()">搜尋</button>
+                    <button onclick="closeSearchOverlay()">關閉</button>
+                </div>
+            </div>
+
+            <script>
+                function showSearchOverlay() {
+                    document.getElementById('search-overlay').style.display = 'flex';
+                }
+
+                function closeSearchOverlay() {
+                    document.getElementById('search-overlay').style.display = 'none';
+                }
+
+                function overlaySearchProduct() {
+                    const query = document.getElementById('overlay-search-input').value;
+                    if (query) {
+                        alert(`開始搜尋：${query}`);
+                        // 在此處可以替換為跳轉到搜尋結果頁面，例如：
+                        // window.location.href = `./searchresults.html?query=${encodeURIComponent(query)}`;
+                    } else {
+                        alert('請輸入搜尋關鍵字');
+                    }
+                }
+            </script>
+
+        </div>
+
+        <!-- 標題內容區 -->
+        <div class="content">
+            <h1>訂購流程</h1>
+        </div>
+
+        <!-- 內容區 -->
+        <div class="content1">
+            <p>1. 選擇蛋糕：</p>
+            • 需註冊為會員或私訊FB粉絲團方可訂購 (新朋友:建立帳戶/ 老客戶:請登入帳號密碼)。
+            </p>
+            <p>2. 填寫客製化訊息：</p>
+            <p>• 在訂購頁面填寫相關訊息，包括口味、尺寸、設計要求及任何特別的訊息。</p>
+            <p>3. 選擇取貨或配送方式：</p>
+            <p>• 選擇您希望的取貨方式-自取或配送到指定地址。</p>
+            <p>4. 確認訂單：</p>
+            <p>• 檢查所有訂單無誤後，提交訂單。您將收到訂單確認郵件。</p>
+            <p>5. 付款：</p>
+            <p>• 按照提示完成付款步驟。</p>
+            <p>• 若使用匯款方式，請於下單2日內匯款，完成匯款後若無指定到貨日期，將於5-7天(不含假日)到貨。</p>
+            <p>6. 等待我們的聯繫：</p>
+            <p>• 我們將在收到訂單後與您聯繫，以確認細節和進一步的要求。</p>
+            <p>7. 享受美味：</p>
+            <p>• 在約定的日期和時間取貨或等待送貨，準備享用您的專屬蛋糕吧!</p>
+
+        </div>
+
+        <div class="content2">
+            <h2>★注意事項 : 此商品因保存期限較短，故無退換貨服務!</h2>
+        </div>
+
+
+
+
+        <!-- 頁尾區 -->
+        <div class="footer">
+            <h3>Contact Us</h3>
+            <p>營業時間：週一至週五 11:00-19:00</p>
+            <p>聯絡電話：0800-866-888</p>
+
+            <!-- fb粉專的icon -->
+            <h3>Follow Us<a href="https://www.facebook.com/profile.php?id=61567196049744&mibextid=JRoKGi+"><img src="./icon/fb_icon_1.png"
+                        alt=""></a></h3>
+
+        </div>
+
+        <!-- 頁尾聲明區 -->
+        <div class="footer1">
+            <h4>Copyright &copy; WISHFUL SWEETS.LTD 版權所有. All rights reserved.</h4>
+            <P>心願甜點股份有限公司 / 統編：86683856</P>
+
+        </div>
+
+</body>
+
+</html>
